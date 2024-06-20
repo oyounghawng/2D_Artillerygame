@@ -7,12 +7,13 @@ using UnityEngine.Tilemaps;
 public class Square : MonoBehaviour
 {
     public Texture2D srcTexture;
-    Texture2D newTexture;
-    SpriteRenderer sr;
+    private Texture2D newTexture;
+    private SpriteRenderer sr;
 
-    float worldWidth, worldHeight;
-    int pixelWidth, pixelHeight;
-
+    private float worldWidth;
+    private float worldHeight;
+    private int pixelWidth;
+    private int pixelHeight;
 
 
     private void Start()
@@ -36,6 +37,7 @@ public class Square : MonoBehaviour
         Vector2Int colliderCenter = WorldToPixel (c2d.bounds.center);
         int radius = Mathf.RoundToInt (c2d.bounds.size.x / 2 * pixelWidth / worldWidth);
         Destroy (c2d.transform.parent.gameObject);
+
         int px, nx, py, ny, distance;
         for (int i =0; i < radius; i++)
         {
@@ -56,35 +58,21 @@ public class Square : MonoBehaviour
         newTexture.Apply();
         MakeSprite();
 
+
+
         var polygonCollider = gameObject.GetComponent<PolygonCollider2D>();
         if (polygonCollider != null)
         {
             Destroy(polygonCollider);
         }
         //Destroy(gameObject.GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>();       
+        gameObject.AddComponent<PolygonCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.GetComponent<CircleCollider2D>()) return;
         MakeAHole(collision.GetComponent<CircleCollider2D>());
-    }
-
-    public void MakeDot (Vector3 pos)
-    {
-        Vector2Int pisxelPosition = WorldToPixel(pos);
-
-        Debug.Log(pos + "/" +  pisxelPosition);
-
-        newTexture.SetPixel(pisxelPosition.x, pisxelPosition.y , Color.clear);
-        newTexture.SetPixel(pisxelPosition.x+1, pisxelPosition.y, Color.clear);
-        newTexture.SetPixel(pisxelPosition.x-1, pisxelPosition.y, Color.clear);
-        newTexture.SetPixel(pisxelPosition.x, pisxelPosition.y+1, Color.clear);
-        newTexture.SetPixel(pisxelPosition.x, pisxelPosition.y-1, Color.clear);
-
-        newTexture.Apply ();
-        MakeSprite();
     }
 
     private void MakeSprite()
