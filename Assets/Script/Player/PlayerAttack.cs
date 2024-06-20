@@ -12,8 +12,6 @@ public class PlayerAttack : MonoBehaviour
 
     public static GameObject  Gunangle;
 
-
-
     void Start()
     {
         Gunangle = gunbarrel;
@@ -42,7 +40,5 @@ public class PlayerAttack : MonoBehaviour
             GameObject go= Instantiate(bullet);
             go.transform.localPosition = gunbarrel.transform.position;
         }
-
-
     }
 }

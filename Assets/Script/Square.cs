@@ -13,6 +13,8 @@ public class Square : MonoBehaviour
     float worldWidth, worldHeight;
     int pixelWidth, pixelHeight;
 
+
+
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();

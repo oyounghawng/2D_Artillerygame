@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     Rigidbody2D rb;
     public float bulletSpeed ;
@@ -13,8 +13,6 @@ public class bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(PlayerAttack.Gunangle.transform.right * bulletSpeed);
-       
-
     }
     
     void FixedUpdate()
