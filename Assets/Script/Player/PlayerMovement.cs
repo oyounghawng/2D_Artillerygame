@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float speed = 3f;
 
+
+   
     void Update()
     {
 

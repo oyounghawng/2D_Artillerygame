@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
+
     public float Angle;//각도
     public float gunbarrelSpeed;//포신의 속도
     public GameObject gunbarrel; //포신 //Shooting Arrow
@@ -35,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
             gunbarrel.transform.eulerAngles = new Vector3(0,0, Angle);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             GameObject go= Instantiate(bullet);
             go.transform.localPosition = gunbarrel.transform.position;
