@@ -9,9 +9,14 @@ public class PlayerAttack : MonoBehaviour
     public float gunbarrelSpeed;//포신의 속도
     public GameObject gunbarrel; //포신 //Shooting Arrow
     public GameObject bullet; //포탄
+
+    public static GameObject  Gunangle;
+
+
+
     void Start()
     {
-
+        Gunangle = gunbarrel;
     }
 
 
