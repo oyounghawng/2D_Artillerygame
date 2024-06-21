@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 300
+  gazer: {fileID: 8642851848858394131, guid: f1d1e74e89760a84ca7ea83f5cc06d49, type: 3}
 --- !u!50 &6256482098999940325
 Rigidbody2D:
   serializedVersion: 4
