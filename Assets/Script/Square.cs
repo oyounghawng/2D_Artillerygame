@@ -30,8 +30,6 @@ public class Square : MonoBehaviour
         worldHeight = sr.bounds.size.y;
         pixelWidth = sr.sprite.texture.width;
         pixelHeight = sr.sprite.texture.height;
-
-        gameObject.GetOrAddComponent<AdvancedPolygonCollider>().RecalculatePolygon();
     }
 
     public void MakeAHole(CircleCollider2D c2d)

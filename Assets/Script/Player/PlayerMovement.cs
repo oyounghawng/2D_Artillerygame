@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class PlayerMovement : MonoBehaviour
 {
+    public bool myturn = false;
+
     private Rigidbody2D rigidBody2D;
 
     private Fuel fuel;
@@ -36,10 +37,12 @@ public class PlayerMovement : MonoBehaviour
         rigidBody2D.velocity = new Vector2(horizontal * speed, rigidBody2D.velocity.y);
     }
 
-    private void Move(InputAction.CallbackContext context)
+    public void Move(InputAction.CallbackContext context)
     {
+        if (!myturn)
+            return;
+
         horizontal = context.ReadValue<Vector2>().x;
-        Debug.Log(horizontal);
         fuel.Decreasefuel(Mathf.Abs(horizontal) * 20f); //보정치가 없으므로
     }
 }
