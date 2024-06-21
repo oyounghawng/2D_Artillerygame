@@ -29,17 +29,25 @@ public class PlayerMovement : MonoBehaviour
             rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
+        
+
     }
 
     private void FixedUpdate()
     {
-        rigidBody2D.velocity = new Vector2(horizontal * speed, rigidBody2D.velocity.y);
+        if (!fuel.IsEmpty())
+        {
+            rigidBody2D.velocity = new Vector2(horizontal * speed, rigidBody2D.velocity.y);
+            if (horizontal != 0)
+            {
+                fuel.Decreasefuel(Mathf.Abs(horizontal) * 20f);
+            }
+        }
     }
 
     private void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
-        Debug.Log(horizontal);
         fuel.Decreasefuel(Mathf.Abs(horizontal) * 20f); //보정치가 없으므로
     }
 }
