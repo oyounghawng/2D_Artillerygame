@@ -30,11 +30,20 @@ public class PlayerMovement : MonoBehaviour
             rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
+        
+
     }
 
     private void FixedUpdate()
     {
-        rigidBody2D.velocity = new Vector2(horizontal * speed, rigidBody2D.velocity.y);
+        if (!fuel.IsEmpty())
+        {
+            rigidBody2D.velocity = new Vector2(horizontal * speed, rigidBody2D.velocity.y);
+            if (horizontal != 0)
+            {
+                fuel.Decreasefuel(Mathf.Abs(horizontal) * 20f);
+            }
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
