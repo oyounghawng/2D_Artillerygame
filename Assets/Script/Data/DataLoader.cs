@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 [Serializable]
 public class LevelExpData
@@ -23,3 +24,23 @@ public class LevelExpDataLoader : ILoader<int, LevelExpData>
         return dic;
     }
 }
+
+
+
+[Serializable]
+public class ItemDataLoader : ILoader<int, ItemData>
+{
+    public List<ItemData> items = new List<ItemData>();
+
+    public Dictionary<int, ItemData> MakeDict()
+    {
+        Dictionary<int, ItemData> dic = new Dictionary<int, ItemData>();
+
+        foreach (ItemData items in items)
+            dic.Add(items.idx, items);
+
+        return dic;
+    }
+}
+
+
