@@ -43,4 +43,19 @@ public class ItemDataLoader : ILoader<int, ItemData>
     }
 }
 
+[Serializable]
+public class PlayerDataLoader : ILoader<int, PlayerData>
+{
+    public List<PlayerData> status = new List<PlayerData>();
+    public Dictionary<int, PlayerData> MakeDict()
+    {
+        Dictionary<int, PlayerData> dic = new Dictionary<int, PlayerData>();
+
+        foreach (PlayerData status in status)
+            dic.Add(status.Idx, status);
+
+        return dic;
+    }
+}
+
 

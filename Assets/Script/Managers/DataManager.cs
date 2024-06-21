@@ -12,11 +12,13 @@ public class DataManager
     //�̴ϰ��� ������
     //public Dictionary<int, LevelExpData> LevelExps { get; private set; } = new Dictionary<int, LevelExpData>();
     public Dictionary<int, ItemData> items { get; private set; } = new Dictionary<int, ItemData>();
+    public Dictionary<int, PlayerData> status { get; private set; } = new Dictionary<int, PlayerData>();
 
     public void Init()
     {
         //LevelExps = LoadJson<LevelExpDataLoader, int, LevelExpData>("LevelExpData").MakeDict();
         items = LoadJson<ItemDataLoader, int, ItemData>("ItemData").MakeDict();
+        status = LoadJson<PlayerDataLoader, int, PlayerData>("PlayerData").MakeDict();
     }
 
     public bool Loaded()
