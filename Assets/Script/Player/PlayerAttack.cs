@@ -4,46 +4,44 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public bool myturn = false;
-
     public float Angle;//각도
     public float gunbarrelSpeed;//포신의 속도
-    public GameObject gunbarrel; //포신 //Shooting Arrow
     public GameObject bullet; //포탄
 
-    public static GameObject Gunangle;
+    private Vector2 movementDirection;
+    private Controller controller;
 
+    private GameObject gunbarrel; //포신 //Shooting Arrow
+
+    private void Awake()
+    {
+        controller = GetComponentInParent<Controller>();
+        gunbarrel = Util.FindChild(this.gameObject, "Shooting", true);
+    }
     void Start()
     {
-        Gunangle = gunbarrel;
+        controller.OnAimEvent += Aim;
+        controller.OnFireEvent += Fire;
     }
 
-
-    void Update()
+    private void FixedUpdate()
     {
-        if (!myturn)
-            return;
+        Angle = Angle + Time.deltaTime * gunbarrelSpeed * movementDirection.y;
+        float rad = Angle * Mathf.Deg2Rad;
+        gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+        gunbarrel.transform.eulerAngles = new Vector3(0, 0, Angle);
+    }
 
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Angle = Angle + Time.deltaTime * gunbarrelSpeed;
-            float rad = Angle * Mathf.Deg2Rad;
-            gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-            gunbarrel.transform.eulerAngles = new Vector3(0, 0, Angle);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            Angle = Angle - Time.deltaTime * gunbarrelSpeed;
-            float rad = Angle * Mathf.Deg2Rad;
-            gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-            gunbarrel.transform.eulerAngles = new Vector3(0, 0, Angle);
-        }
+    private void Aim(Vector2 value)
+    {
+        movementDirection = value;
+    }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            GameObject go = Instantiate(bullet);
-            go.transform.localPosition = gunbarrel.transform.position;
-            TurnManager.instance.ChangeTurn();
-        }
+    private void Fire(float value)
+    {
+        GameObject go = Instantiate(bullet);
+        go.GetComponent<Bullet>().Set(this.transform);
+        go.transform.localPosition = gunbarrel.transform.position;
+        TurnManager.instance.ChangeTurn();
     }
 }

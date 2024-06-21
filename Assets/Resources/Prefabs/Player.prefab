@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 4293427063904400942}
   - component: {fileID: 4028138302710880475}
   - component: {fileID: 3330150343297016185}
+  - component: {fileID: 8219632181025168042}
   - component: {fileID: 2483883450835348961}
   m_Layer: 0
   m_Name: Player
@@ -648,10 +649,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710295436791479808}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.57165045, y: 2.41, z: 0.07081363}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2020760109949391500}
   - {fileID: 1738238554523602499}
@@ -793,7 +794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d4f2c33cf42f64382d928c43aec35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myturn: 1
 --- !u!114 &1031211360233912414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,6 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 2931849270998836349}
   fuel: 1000
+  fuelRechargeRate: 1
 --- !u!114 &3330150343297016185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,6 +850,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 050fae31f4c680540932cf0944465d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myturn: 0
+--- !u!114 &8219632181025168042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710295436791479808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe521e9cb63a764b9260befa3b0d2f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2483883450835348961
@@ -864,7 +878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 14bacac16dbd86d4d9769336adaf06f4, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -900,46 +914,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: def14c8f-af42-4f04-826e-64cb86874e67
     m_ActionName: Player/Fire[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 135bb108-e5dd-4fd1-8ab4-c98e80bdb193
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0a85583f-f32e-4412-902f-ac2e5641d877
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b0ace783-c53f-4fe7-849d-28de72e0619c
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1aba8b0c-e8fd-48d7-9276-447c66fcc1ca
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9fe75393-6fb7-4c3a-a36c-60fa42791d9f
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 981a31e4-66d7-402e-a97d-8aa1aa0ddabb
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 97bb2627-4048-4d54-8f66-df6ab0497bbb
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9ae76dc4-7ac1-4ba6-8ca6-925eb81bfad1
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: df219474-6ba1-4a1e-aed6-a4ee629a5643
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 25fa8a1e-e3b6-4e12-b095-11e30e029511
-    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

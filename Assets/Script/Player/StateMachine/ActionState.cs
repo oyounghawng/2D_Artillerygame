@@ -8,8 +8,7 @@ public class ActionState : BaseState
 
     public override void OnStateEnter()
     {
-        player.GetComponent<PlayerMovement>().myturn = true;
-        player.GetComponent<PlayerAttack>().myturn = true;
+        player.myturn = true;
     }
 
     public override void OnStateExit()

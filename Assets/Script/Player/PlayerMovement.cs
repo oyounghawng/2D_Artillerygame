@@ -3,21 +3,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool myturn = false;
-
+    private Controller controller;
     private Rigidbody2D rigidBody2D;
-
     private Fuel fuel;
-    private float horizontal;
+
+    private Vector2 movementDirection = Vector2.zero;
     private float speed = 3f;
 
-    private void Start()
+    private void Awake()
     {
+        controller = GetComponentInParent<Controller>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         fuel = GetComponent<Fuel>();
     }
 
-    //이동 한 거리 비례해서 줄어야되는데 지금은 입력만줄어서 그런듯
+    private void Start()
+    {
+        controller.OnMoveEvent += Move;
+    }
+
     void Update()
     {
         if (!Input.anyKey)
@@ -30,29 +34,23 @@ public class PlayerMovement : MonoBehaviour
             rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
-        
-
     }
 
     private void FixedUpdate()
     {
         if (!fuel.IsEmpty())
         {
-            rigidBody2D.velocity = new Vector2(horizontal * speed, rigidBody2D.velocity.y);
-            if (horizontal != 0)
+            rigidBody2D.velocity = new Vector2(movementDirection.x * speed, rigidBody2D.velocity.y);
+            if (movementDirection.x != 0)
             {
-                fuel.Decreasefuel(Mathf.Abs(horizontal) * 20f);
+                fuel.Decreasefuel(Mathf.Abs(movementDirection.x) * 20f);
             }
         }
     }
 
-    public void Move(InputAction.CallbackContext context)
+    private void Move(Vector2 direction)
     {
-        if (!myturn)
-            return;
-
-        horizontal = context.ReadValue<Vector2>().x;
-        fuel.Decreasefuel(Mathf.Abs(horizontal) * 20f); //보정치가 없으므로
+        movementDirection = direction;
     }
 }
 

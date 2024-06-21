@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerStateMachine stateMachine;
-
+    public bool myturn = false;
     private void Awake()
     {
         stateMachine = new PlayerStateMachine(this);

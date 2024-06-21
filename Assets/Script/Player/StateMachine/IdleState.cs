@@ -8,8 +8,7 @@ public class IdleState : BaseState
 
     public override void OnStateEnter()
     {
-        player.GetComponent<PlayerMovement>().myturn = false;
-        player.GetComponent<PlayerAttack>().myturn = false;
+        player.myturn = false;
     }
 
     public override void OnStateExit()
