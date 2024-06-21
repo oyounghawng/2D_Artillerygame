@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public virtual void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
     }

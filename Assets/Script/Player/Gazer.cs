@@ -11,7 +11,7 @@ public class Gazer : MonoBehaviour
 
     private void Start()
     {
-        PowerGazer = GameObject.Find("Canvas/Slider");
+        PowerGazer = GameObject.Find("Canvas/gazer");
 
     }
 
