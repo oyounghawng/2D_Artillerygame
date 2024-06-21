@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float speed = 3f;
 
+
+   
     void Update()
     {
 
@@ -32,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public virtual void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
