@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-
-
     public float Angle;//각도
     public float gunbarrelSpeed;//포신의 속도
     public GameObject gunbarrel; //포신 //Shooting Arrow
