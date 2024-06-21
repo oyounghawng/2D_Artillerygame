@@ -17,6 +17,7 @@ public class TilemapToPNG : MonoBehaviour
         SaveTileSprites();
     }
 
+    [ContextMenu("FileToPng")]
     void SaveTilemapAsPNG()
     {
         // 기존 카메라 설정 저장
@@ -60,6 +61,7 @@ public class TilemapToPNG : MonoBehaviour
         Debug.Log("Tilemap saved as PNG: " + Application.dataPath + "/" + tilemapFileName);
     }
 
+    [ContextMenu("FileToSprite")]
     void SaveTileSprites()
     {
         HashSet<Sprite> uniqueSprites = new HashSet<Sprite>();
