@@ -1,6 +1,8 @@
+using DigitalRuby.AdvancedPolygonCollider;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Cache;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -29,17 +31,17 @@ public class Square : MonoBehaviour
         pixelWidth = sr.sprite.texture.width;
         pixelHeight = sr.sprite.texture.height;
 
-        gameObject.AddComponent<PolygonCollider2D>();
+        //gameObject.GetOrAddComponent<AdvancedPolygonCollider>().RecalculatePolygon();
     }
 
-    public void MakeAHole (CircleCollider2D c2d)
+    public void MakeAHole(CircleCollider2D c2d)
     {
-        Vector2Int colliderCenter = WorldToPixel (c2d.bounds.center);
-        int radius = Mathf.RoundToInt (c2d.bounds.size.x / 2 * pixelWidth / worldWidth);
-        Destroy (c2d.transform.parent.gameObject);
+        Vector2Int colliderCenter = WorldToPixel(c2d.bounds.center);    
+        int radius = Mathf.RoundToInt(c2d.bounds.size.x / 2 * pixelWidth / worldWidth);
+        Destroy(c2d.transform.parent.gameObject);
 
         int px, nx, py, ny, distance;
-        for (int i =0; i < radius; i++)
+        for (int i = 0; i < radius; i++)
         {
             distance = Mathf.RoundToInt(Mathf.Sqrt(radius * radius - i * i));
             for (int j = 0; j < distance; j++)
@@ -58,15 +60,6 @@ public class Square : MonoBehaviour
         newTexture.Apply();
         MakeSprite();
 
-
-
-        var polygonCollider = gameObject.GetComponent<PolygonCollider2D>();
-        if (polygonCollider != null)
-        {
-            Destroy(polygonCollider);
-        }
-        //Destroy(gameObject.GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
