@@ -31,14 +31,14 @@ public class Square : MonoBehaviour
         pixelWidth = sr.sprite.texture.width;
         pixelHeight = sr.sprite.texture.height;
 
-        //gameObject.GetOrAddComponent<AdvancedPolygonCollider>().RecalculatePolygon();
+        gameObject.GetOrAddComponent<AdvancedPolygonCollider>().RunInPlayMode = true;
     }
 
     public void MakeAHole(CircleCollider2D c2d)
     {
         Vector2Int colliderCenter = WorldToPixel(c2d.bounds.center);    
         int radius = Mathf.RoundToInt(c2d.bounds.size.x / 2 * pixelWidth / worldWidth);
-        Destroy(c2d.transform.parent.gameObject);
+        Destroy(c2d.transform.parent.gameObject, 0.02f);
 
         int px, nx, py, ny, distance;
         for (int i = 0; i < radius; i++)
@@ -60,7 +60,17 @@ public class Square : MonoBehaviour
         newTexture.Apply();
         MakeSprite();
 
+        StartCoroutine(CollisionReset());
     }
+
+    IEnumerator CollisionReset()
+    {
+        yield return new WaitForEndOfFrame();
+        gameObject.GetOrAddComponent<AdvancedPolygonCollider>().RunInPlayMode = true;
+        yield return new WaitForEndOfFrame();
+        gameObject.GetOrAddComponent<AdvancedPolygonCollider>().RunInPlayMode = false;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
