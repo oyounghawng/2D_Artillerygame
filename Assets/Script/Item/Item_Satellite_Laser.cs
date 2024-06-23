@@ -8,9 +8,11 @@ public class Item_Satellite_Laser : StautsItem//, IDamagable
     // }
     public override void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            testPlayer.TransHealth(Managers.Data.items[2].value);
+            testPlayer.TransHealth(-Managers.Data.items[2].value);
         }
+        base.OnCollisionEnter2D(other);
     }
+
 }
