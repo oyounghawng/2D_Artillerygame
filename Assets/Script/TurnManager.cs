@@ -2,13 +2,23 @@ using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviourPunCallbacks
 {
     public static TurnManager instance;
     public List<Player> players;
     int myNum;
+
+    public float windPower;
+    public float windDirection;
+
+    public TextMeshProUGUI windPowerUI;
+    public Image windDirectionUI;
+
     int curturn = 0;
     private void Awake()
     {
@@ -21,6 +31,9 @@ public class TurnManager : MonoBehaviourPunCallbacks
         SpawnPlayer();
 
         /*
+        WindDirectionChange();
+        WindPowerChange();
+
         foreach (Transform child in this.transform)
         {
             Player player = child.GetComponent<Player>();
@@ -69,5 +82,25 @@ public class TurnManager : MonoBehaviourPunCallbacks
             curturn++;
         }
         players[curturn].ChangeAction();
+
+        //���� ����? ����...�� ���� �̻���?
+        int rd = Random.Range(0, 2);
+        if (rd != 1)
+        {
+            WindDirectionChange();
+            WindPowerChange();
+        }
+    }
+
+    private void WindPowerChange()
+    {
+        windPower = Random.Range(0, 4);
+        windPowerUI.text = windPower.ToString();
+    }
+
+    private void WindDirectionChange()
+    {
+        windDirection = Random.Range(-20, 201);
+        windDirectionUI.transform.rotation = Quaternion.Euler(0, 0, windDirection);
     }
 }
