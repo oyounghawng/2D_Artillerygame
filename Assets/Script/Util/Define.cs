@@ -7,7 +7,6 @@ public class Define : MonoBehaviour
     public enum SceneType
     {
         Unknown,
-        LogoScene,
         LobbyScene,
         GameScene,
     }

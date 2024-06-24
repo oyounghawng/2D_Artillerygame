@@ -30,8 +30,6 @@ public class InputController : Controller
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        Debug.Log(player);
-
         if (!player.myturn)
             return;
 
