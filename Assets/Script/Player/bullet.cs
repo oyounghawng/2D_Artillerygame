@@ -53,11 +53,8 @@ public class Bullet : MonoBehaviour
     IEnumerator ObjectClear()
     {
         yield return new WaitForSeconds(5);
-        Debug.Log("실행");
         if (-30 > gameObject.transform.position.y)
         {
-            Debug.Log("실행2");
-            Debug.Log(name);
             Destroy(gameObject);
         }
     }
