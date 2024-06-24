@@ -5,28 +5,30 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Rigidbody2D rb;
-    public float bulletSpeed;
-    public Gazer gazer;
+    private Rigidbody2D rigidBody;
+    private float bulletSpeed;
+    private Transform instantiateTransform;
 
-    public Transform pos;
+    private void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        gazer = GameObject.FindObjectOfType<Gazer>();
-        bulletSpeed = gazer.Force;
-        rb.AddForce(pos.right * bulletSpeed);
+        rigidBody.AddForce(instantiateTransform.right * bulletSpeed , ForceMode2D.Impulse);
     }
-    
+
     void FixedUpdate()
     {
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(rigidBody.velocity.y, rigidBody.velocity.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0f, 0f, angle);
     }
 
-    public void Set(Transform trans)
+
+    public void Set(Transform _instantiateTransform, float _bulletSpeed)
     {
-        pos = trans;
+        instantiateTransform = _instantiateTransform;
+        bulletSpeed = _bulletSpeed;
     }
 }

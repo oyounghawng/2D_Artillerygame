@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     {
         stateMachine = new PlayerStateMachine(this);
     }
+
     public void ChangeAction()
     {
         stateMachine.ChangeState(stateMachine.ActionState);

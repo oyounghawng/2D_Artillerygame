@@ -11,28 +11,35 @@ public class InputController : Controller
     {
         player = GetComponent<Player>();
     }
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
         if (!player.myturn)
             return;
 
-        Vector2 moveInput = value.Get<Vector2>().normalized;
+        Vector2 moveInput = context.ReadValue<Vector2>().normalized;
         CallMoveEvent(moveInput);
     }
-    public void OnAim(InputValue value)
+    public void OnAim(InputAction.CallbackContext context)
     {
         if (!player.myturn)
             return;
 
-        Vector2 newAim = value.Get<Vector2>();
+        Vector2 newAim = context.ReadValue<Vector2>();
         CallLookEvenet(newAim);
     }
 
-    public void OnFire(InputValue value)
+    public void OnFire(InputAction.CallbackContext context)
     {
         if (!player.myturn)
             return;
 
-        CallFireEvent(3);
+        if (context.phase == InputActionPhase.Performed)
+        {
+            CallGazeEvenet();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            CallFireEvent();
+        }
     }
 }

@@ -7,7 +7,8 @@ public class Controller : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnAimEvent;
-    public event Action<float> OnFireEvent;
+    public event Action OnGazeEvent;
+    public event Action OnFireEvent;
 
 
     public void CallMoveEvent(Vector2 direction)
@@ -19,8 +20,14 @@ public class Controller : MonoBehaviour
     {
         OnAimEvent?.Invoke(direction);
     }
-    public void CallFireEvent(float value)
+
+    public void CallGazeEvenet()
+    {
+        OnGazeEvent?.Invoke();
+    }
+
+    public void CallFireEvent()
     { 
-        OnFireEvent?.Invoke(value);
+        OnFireEvent?.Invoke();
     }
 }

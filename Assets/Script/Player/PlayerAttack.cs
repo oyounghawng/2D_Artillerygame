@@ -1,17 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerAttack : MonoBehaviour
 {
-    public float Angle;//각도
-    public float gunbarrelSpeed;//포신의 속도
-    public GameObject bullet; //포탄
+    private Controller controller;
+    public Slider forceUI;
 
     private Vector2 movementDirection;
-    private Controller controller;
-
     private GameObject gunbarrel; //포신 //Shooting Arrow
+    public GameObject bullet; //포탄
+    public float Angle;//각도
+    public float gunbarrelSpeed;//포신의 속도
+    private float force;
+    private float maxForce = 10f;
+
+
+    private bool isPressed = false;
 
     private void Awake()
     {
@@ -21,7 +25,22 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         controller.OnAimEvent += Aim;
+        controller.OnGazeEvent += Gaze;
         controller.OnFireEvent += Fire;
+    }
+
+    private void Controller_OnGazeEvent()
+    {
+        throw new System.NotImplementedException();
+    }
+    private void Update()
+    {
+        if (isPressed)
+        {
+            force += Time.deltaTime;
+            force = Mathf.Clamp(force, 0, maxForce);
+            Slider();
+        }
     }
 
     private void FixedUpdate()
@@ -36,12 +55,35 @@ public class PlayerAttack : MonoBehaviour
     {
         movementDirection = value;
     }
-
-    private void Fire(float value)
+    private void Gaze()
     {
+        isPressed = true;
+    }
+
+    private void Fire()
+    {
+        isPressed = false;
         GameObject go = Instantiate(bullet);
-        go.GetComponent<Bullet>().Set(this.transform);
+        go.GetComponent<Bullet>().Set(this.transform, force);
         go.transform.localPosition = gunbarrel.transform.position;
+        go.transform.rotation = gunbarrel.transform.rotation;
+        ResetGauge();
         TurnManager.instance.ChangeTurn();
+    }
+
+
+    public void Slider()
+    {
+        forceUI.value = force / maxForce;
+    }
+    public void ResetGauge()
+    {
+        force = 0;
+        forceUI.value = 0;
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ResetGauge();
     }
 }
