@@ -9,13 +9,18 @@ public interface ILoader<Key, Value>
 public class DataManager
 {
 
-    //¹Ì´Ï°ÔÀÓ µ¥ÀÌÅÍ
+    //ï¿½Ì´Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //public Dictionary<int, LevelExpData> LevelExps { get; private set; } = new Dictionary<int, LevelExpData>();
+    public Dictionary<int, ItemData> items { get; private set; } = new Dictionary<int, ItemData>();
+    public Dictionary<int, PlayerData> status { get; private set; } = new Dictionary<int, PlayerData>();
 
     public void Init()
     {
         //LevelExps = LoadJson<LevelExpDataLoader, int, LevelExpData>("LevelExpData").MakeDict();
+        items = LoadJson<ItemDataLoader, int, ItemData>("ItemData").MakeDict();
+        status = LoadJson<PlayerDataLoader, int, PlayerData>("PlayerData").MakeDict();
     }
+
 
     public bool Loaded()
     {
