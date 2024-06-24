@@ -8,8 +8,6 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rigidBody;
     private float bulletSpeed;
     private Transform instantiateTransform;
-    public ParticleSystem bulletParticle;
-
     private TurnManager turnManager;
 
     private void Awake()
@@ -20,15 +18,10 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        /*
         bulletSpeed *= 1.5f;
         float angle = instantiateTransform.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-        rigidBody.AddForce(power * bulletSpeed, ForceMode2D.Impulse);
-        */
-        bulletSpeed *= 1.5f;
-        float angle = instantiateTransform.eulerAngles.z * Mathf.Deg2Rad;
-        Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+
         float windAngleRad = turnManager.windDirection * Mathf.Deg2Rad;
         Vector2 windPower = new Vector2(Mathf.Cos(windAngleRad), Mathf.Sin(windAngleRad)) * turnManager.windPower;
         Vector2 totalPower = (power * bulletSpeed) + windPower;
@@ -54,17 +47,10 @@ public class Bullet : MonoBehaviour
     IEnumerator ObjectClear()
     {
         yield return new WaitForSeconds(5);
-        Debug.Log("����");
         if (-30 > gameObject.transform.position.y)
         {
-            Debug.Log("����2");
             Debug.Log(name);
             Destroy(gameObject);
         }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        bulletParticle.Play();
-
-
     }
 }
