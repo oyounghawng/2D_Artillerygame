@@ -23,25 +23,23 @@ public class TurnManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         instance = this;
-
-
     }
     private void Start()
     {
         SpawnPlayer();
-
-        /*
         WindDirectionChange();
         WindPowerChange();
 
+        /*
         foreach (Transform child in this.transform)
         {
             Player player = child.GetComponent<Player>();
             player.ChangeIdle();
             players.Add(player);
         }
-        */
+        
         players[curturn].ChangeAction();
+        */
     }
 
     private void SpawnPlayer()
@@ -58,11 +56,12 @@ public class TurnManager : MonoBehaviourPunCallbacks
             go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(3, 2, 0), Quaternion.identity);
         }
 
+        /*
         if (PhotonNetwork.PlayerList[idx] == PhotonNetwork.LocalPlayer)
         {
             myNum = idx;
         }
-
+        */
         /*
         Player player = go.GetComponent<Player>();
         player.ChangeIdle();
@@ -72,6 +71,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     public void ChangeTurn()
     {
+        /*
         players[curturn].ChangeIdle();
         if (curturn + 1 == players.Count)
         {
@@ -82,8 +82,8 @@ public class TurnManager : MonoBehaviourPunCallbacks
             curturn++;
         }
         players[curturn].ChangeAction();
+        */
 
-        //���� ����? ����...�� ���� �̻���?
         int rd = Random.Range(0, 2);
         if (rd != 1)
         {
