@@ -15,6 +15,7 @@ public class Fuel : MonoBehaviour
     public void ResetFuel()
     {
         fuel = maxFuel;
+        slider.value = fuel / maxFuel;
     }
     public bool IsEmpty()
     {

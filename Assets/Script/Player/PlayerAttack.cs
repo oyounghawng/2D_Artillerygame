@@ -9,12 +9,10 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 movementDirection;
     private GameObject gunbarrel; //포신 //Shooting Arrow
     private GameObject bullet; //포탄
-    public float Angle;//각도
-    public float gunbarrelSpeed;//포신의 속도
+    private float angle; //각도
+    private float gunbarrelSpeed = 50;//포신의 속도
     private float force;
     private float maxForce = 10f;
-
-
     private bool isPressed = false;
 
     private void Awake()
@@ -47,10 +45,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Angle = Angle + Time.deltaTime * gunbarrelSpeed * movementDirection.y;
-        float rad = Angle * Mathf.Deg2Rad;
+        angle = angle + Time.deltaTime * gunbarrelSpeed * movementDirection.y;
+        angle = Mathf.Clamp(angle, 0, 180);
+        float rad = angle * Mathf.Deg2Rad;
         gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-        gunbarrel.transform.eulerAngles = new Vector3(0, 0, Angle);
+        gunbarrel.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     private void Aim(Vector2 value)
@@ -70,9 +69,14 @@ public class PlayerAttack : MonoBehaviour
         go.transform.localPosition = gunbarrel.transform.position;
         go.transform.rotation = gunbarrel.transform.rotation;
         ResetGauge();
-        TurnManager.instance.ChangeTurn();
+        StartCoroutine(ChangeTurnAfterShot());
     }
 
+    private IEnumerator ChangeTurnAfterShot()
+    {
+        yield return null;
+        TurnManager.instance.ChangeTurn();
+    }
 
     public void Slider()
     {
