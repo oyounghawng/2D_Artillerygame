@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
 
     private Vector2 movementDirection;
     private GameObject gunbarrel; //포신 //Shooting Arrow
-    public GameObject bullet; //포탄
+    private GameObject bullet; //포탄
     public float Angle;//각도
     public float gunbarrelSpeed;//포신의 속도
     private float force;
@@ -24,6 +24,8 @@ public class PlayerAttack : MonoBehaviour
     }
     void Start()
     {
+        bullet = Managers.Resource.Load<GameObject>("Prefabs/Bullet");
+
         controller.OnAimEvent += Aim;
         controller.OnGazeEvent += Gaze;
         controller.OnFireEvent += Fire;
@@ -37,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (isPressed)
         {
-            force += Time.deltaTime;
+            force += Time.deltaTime * 2.5f;
             force = Mathf.Clamp(force, 0, maxForce);
             Slider();
         }
@@ -64,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isPressed = false;
         GameObject go = Instantiate(bullet);
-        go.GetComponent<Bullet>().Set(this.transform, force);
+        go.GetComponent<Bullet>().Set(gunbarrel.transform, force);
         go.transform.localPosition = gunbarrel.transform.position;
         go.transform.rotation = gunbarrel.transform.rotation;
         ResetGauge();

@@ -9,6 +9,7 @@ public class IdleState : BaseState
     public override void OnStateEnter()
     {
         player.myturn = false;
+        player.GetComponent<Fuel>().ResetFuel();
     }
 
     public override void OnStateExit()

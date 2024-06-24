@@ -25,7 +25,7 @@ public class InputController : Controller
             return;
 
         Vector2 newAim = context.ReadValue<Vector2>();
-        CallLookEvenet(newAim);
+        CallLookEvent(newAim);
     }
 
     public void OnFire(InputAction.CallbackContext context)
@@ -35,7 +35,7 @@ public class InputController : Controller
 
         if (context.phase == InputActionPhase.Performed)
         {
-            CallGazeEvenet();
+            CallGazeEvent();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {

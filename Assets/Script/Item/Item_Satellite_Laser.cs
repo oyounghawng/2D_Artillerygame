@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class Item_Satellite_Laser : StautsItem//, IDamagable
 {
     // public void TakeDamage(int damageAmount)
@@ -11,8 +10,8 @@ public class Item_Satellite_Laser : StautsItem//, IDamagable
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            TestPlayer testPlayer = other.gameObject.GetComponent<TestPlayer>();
-            testPlayer.TransHealth(-Managers.Data.items[2].value);
+            PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
+            player.TransHealth(-Managers.Data.items[2].value);
         }
         base.OnCollisionEnter2D(other);
     }
