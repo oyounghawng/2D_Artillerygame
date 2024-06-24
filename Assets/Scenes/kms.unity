@@ -1162,8 +1162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceUI: {fileID: 1440786146}
-  Angle: 0
-  gunbarrelSpeed: 30
 --- !u!114 &1295891889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,8 +1818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceUI: {fileID: 2000867667710231240}
-  Angle: 0
-  gunbarrelSpeed: 30
 --- !u!224 &1387062261295033555
 RectTransform:
   m_ObjectHideFlags: 0

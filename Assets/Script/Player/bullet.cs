@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rigidBody;
     private float bulletSpeed;
     private Transform instantiateTransform;
+    public ParticleSystem bulletParticle;
 
     private void Awake()
     {
@@ -33,5 +34,11 @@ public class Bullet : MonoBehaviour
     {
         instantiateTransform = _instantiateTransform;
         bulletSpeed = _bulletSpeed;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        bulletParticle.Play();
+
+
     }
 }
