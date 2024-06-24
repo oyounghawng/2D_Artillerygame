@@ -16,12 +16,12 @@ public class Controller : MonoBehaviour
         OnMoveEvent?.Invoke(direction);
     }
 
-    public void CallLookEvenet(Vector2 direction)
+    public void CallLookEvent(Vector2 direction)
     {
         OnAimEvent?.Invoke(direction);
     }
 
-    public void CallGazeEvenet()
+    public void CallGazeEvent()
     {
         OnGazeEvent?.Invoke();
     }

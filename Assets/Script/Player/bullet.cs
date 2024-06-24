@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
-    private float bulletSpeed;
+    private float bulletSpeed = 3f;
     private Transform instantiateTransform;
 
     private void Awake()
@@ -16,7 +16,11 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        rigidBody.AddForce(instantiateTransform.right * bulletSpeed , ForceMode2D.Impulse);
+        float angle = instantiateTransform.rotation.z;
+        Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+        Debug.Log(angle);
+        Debug.Log(power);
+        rigidBody.AddForce(power * bulletSpeed, ForceMode2D.Impulse);
     }
 
     void FixedUpdate()

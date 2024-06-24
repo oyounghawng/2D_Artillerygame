@@ -9,17 +9,13 @@ public class Fuel : MonoBehaviour
     public float fuelRechargeRate = 1f;
     void Start()
     {
-        fuel = maxFuel;
-
+        ResetFuel();
     }
 
-    
-    public void Decreasefuel(float amount)
+    public void ResetFuel()
     {
-        fuel -= amount;
-        slider.value = fuel / maxFuel;
+        fuel = maxFuel;
     }
-
     public bool IsEmpty()
     {
         return fuel <= 0;
@@ -31,6 +27,12 @@ public class Fuel : MonoBehaviour
         {
             fuel = maxFuel;
         }
+        slider.value = fuel / maxFuel;
+    }
+
+    public void Decreasefuel(float amount)
+    {
+        fuel -= amount;
         slider.value = fuel / maxFuel;
     }
 }
