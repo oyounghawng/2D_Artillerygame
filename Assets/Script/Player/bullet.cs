@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rigidBody;
     private float bulletSpeed;
     private Transform instantiateTransform;
+    public ParticleSystem bulletParticle;
 
     private TurnManager turnManager;
 
@@ -60,5 +61,10 @@ public class Bullet : MonoBehaviour
             Debug.Log(name);
             Destroy(gameObject);
         }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        bulletParticle.Play();
+
+
     }
 }

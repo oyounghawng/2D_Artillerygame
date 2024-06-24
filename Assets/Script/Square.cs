@@ -32,7 +32,11 @@ public class Square : MonoBehaviour
 
     public void MakeAHole(CircleCollider2D c2d)
     {
+
         Vector2Int colliderCenter = WorldToPixel(c2d.bounds.center);
+        GameObject go = Managers.Resource.Instantiate("Particle");
+        go.transform.position = new Vector3(c2d.bounds.center.x, c2d.bounds.center.y, 0);
+
         int radius = Mathf.RoundToInt(c2d.bounds.size.x / 2 * pixelWidth / worldWidth);
         Destroy(c2d.transform.parent.gameObject, 0.02f);
         
