@@ -1,0 +1,25 @@
+{
+    "items": [
+        {
+            "idx": 0,
+            "name": "탄 강화",
+            "desc": "폭발 범위 증가 및 데미지 증가",
+            "value": 2,
+            "prefabPath": "Items/BulletEnforce"
+        },
+        {
+            "idx": 1,
+            "name": "이동속도 강화",
+            "desc": "이동속도 증가",
+            "value": 1,
+            "prefabPath": "Items/MoveEnforce"
+        },
+        {
+            "idx": 2,
+            "name": "인공위성 레이저",
+            "desc": "위에서 아래로 인공위성 레이저를 쏜다.",
+            "value": 5,
+            "prefabPath": "Items/Satellite_Laser"
+        }
+    ]
+}
