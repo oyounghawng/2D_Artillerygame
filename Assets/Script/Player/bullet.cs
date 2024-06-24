@@ -9,19 +9,31 @@ public class Bullet : MonoBehaviour
     private float bulletSpeed = 3f;
     private Transform instantiateTransform;
 
+    private TurnManager turnManager;
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        turnManager = TurnManager.instance;
     }
 
     void Start()
     {
-        float angle = instantiateTransform.rotation.z;
+        /*
+        bulletSpeed *= 1.5f;
+        float angle = instantiateTransform.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-        Debug.Log(angle);
-        Debug.Log(power);
         rigidBody.AddForce(power * bulletSpeed, ForceMode2D.Impulse);
+        */
+        bulletSpeed *= 1.5f;
+        float angle = instantiateTransform.eulerAngles.z * Mathf.Deg2Rad;
+        Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+        float windAngleRad = turnManager.windDirection * Mathf.Deg2Rad;
+        Vector2 windPower = new Vector2(Mathf.Cos(windAngleRad), Mathf.Sin(windAngleRad)) * turnManager.windPower;
+        Vector2 totalPower = (power * bulletSpeed) + windPower;
+        rigidBody.AddForce(totalPower, ForceMode2D.Impulse);
     }
+
 
     void FixedUpdate()
     {
@@ -35,4 +47,6 @@ public class Bullet : MonoBehaviour
         instantiateTransform = _instantiateTransform;
         bulletSpeed = _bulletSpeed;
     }
+
+
 }
