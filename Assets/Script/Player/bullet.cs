@@ -32,6 +32,8 @@ public class Bullet : MonoBehaviour
         Vector2 windPower = new Vector2(Mathf.Cos(windAngleRad), Mathf.Sin(windAngleRad)) * turnManager.windPower;
         Vector2 totalPower = (power * bulletSpeed) + windPower;
         rigidBody.AddForce(totalPower, ForceMode2D.Impulse);
+
+        StartCoroutine(ObjectClear());
     }
 
 
@@ -48,5 +50,15 @@ public class Bullet : MonoBehaviour
         bulletSpeed = _bulletSpeed;
     }
 
-
+    IEnumerator ObjectClear()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("실행");
+        if (-30 > gameObject.transform.position.y)
+        {
+            Debug.Log("실행2");
+            Debug.Log(name);
+            Destroy(gameObject);
+        }
+    }
 }
