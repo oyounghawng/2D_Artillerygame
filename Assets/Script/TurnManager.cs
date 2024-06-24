@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
 
     public void ChangeTurn()
     {
-        Debug.Log("Asd");
+        Debug.Log(curturn);
         players[curturn].ChangeIdle();
         if (curturn + 1 == players.Count)
         {
