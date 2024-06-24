@@ -6,6 +6,7 @@ public class Item_MoveEnforce : StautsItem
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            TestPlayer testPlayer = other.gameObject.GetComponent<TestPlayer>();
             testPlayer.TransSpeed(Managers.Data.items[1].value);
         }
         base.OnCollisionEnter2D(other);

@@ -21,6 +21,7 @@ public class DataManager
         status = LoadJson<PlayerDataLoader, int, PlayerData>("PlayerData").MakeDict();
     }
 
+
     public bool Loaded()
     {
         return true;

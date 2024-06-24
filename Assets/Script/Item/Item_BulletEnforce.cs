@@ -7,7 +7,7 @@ public class Item_BulletEnforce : StautsItem
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(Managers.Data.items[0].value);
+            TestPlayer testPlayer = other.gameObject.GetComponent<TestPlayer>();
             testPlayer.TransDamage(Managers.Data.items[0].value);
         }
         base.OnCollisionEnter2D(other);
