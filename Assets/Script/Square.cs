@@ -34,7 +34,6 @@ public class Square : MonoBehaviour
     {
         Vector2Int colliderCenter = WorldToPixel(c2d.bounds.center);
         int radius = Mathf.RoundToInt(c2d.bounds.size.x / 2 * pixelWidth / worldWidth);
-        radius *= 3; // 추후 파괴 보정치 1,2,3
         Destroy(c2d.transform.parent.gameObject, 0.02f);
         
         int px, nx, py, ny, distance;
