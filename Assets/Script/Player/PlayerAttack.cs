@@ -1,7 +1,10 @@
+using Photon.Pun;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerAttack : MonoBehaviour
+
+public class PlayerAttack : MonoBehaviourPunCallbacks
 {
     private Controller controller;
     public Slider forceUI;
@@ -63,15 +66,18 @@ public class PlayerAttack : MonoBehaviour
 
     private void Fire()
     {
+        photonView.RPC("RPC_Fire", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void RPC_Fire()
+    {
         isPressed = false;
-        GameObject go = Instantiate(bullet);
+        GameObject go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "bullet"), gunbarrel.transform.position, gunbarrel.transform.rotation);
         go.GetComponent<Bullet>().Set(gunbarrel.transform, force);
-        go.transform.localPosition = gunbarrel.transform.position;
-        go.transform.rotation = gunbarrel.transform.rotation;
         ResetGauge();
         StartCoroutine(ChangeTurnAfterShot());
     }
-
     private IEnumerator ChangeTurnAfterShot()
     {
         yield return null;

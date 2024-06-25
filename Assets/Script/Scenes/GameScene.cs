@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameScene : BaseScene
-{
-    int ClickCount = 0;
-
-    protected override void Init()
+{    protected override void Init()
     {
         base.Init();
 
