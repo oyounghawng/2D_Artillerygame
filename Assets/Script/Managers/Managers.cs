@@ -18,6 +18,7 @@ public class Managers : MonoBehaviour
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
+    ItemManager _item = new ItemManager();
 
     public static DataManager Data { get { return Instance?._data; } }
     public static GameManagerEx Game { get { return Instance?._game; } }
@@ -27,6 +28,7 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance?._scene; } }
     public static SoundManager Sound { get { return Instance?._sound; } }
     public static UIManager UI { get { return Instance?._ui; } }
+    public static ItemManager Item { get { return Instance?._item; } }
 
 
     void Start()
@@ -54,6 +56,7 @@ public class Managers : MonoBehaviour
             s_instance._resource.Init();
             s_instance._sound.Init();
             s_instance._game.Init();
+            s_instance._item.Init();
 
             Application.targetFrameRate = 60;
         }

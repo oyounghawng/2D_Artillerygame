@@ -18,7 +18,7 @@ public class SpawnItem : MonoBehaviour
     {
         float spawnXPos = Random.Range(-8f, 8f);
 
-        int itemIdx = Random.Range(0, 3);
+        int itemIdx = Random.Range(0, 4);
 
         Vector2 spawnPosition = new Vector2(spawnXPos, 5);
 
