@@ -11,6 +11,11 @@ public class FuncItem : MonoBehaviour, IDamagable
     protected int itemIdx;
     protected PlayerStats player = new PlayerStats();
 
+    protected Animator animator;
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     public virtual void TakeDamage(int damageAmount)
     {
         Debug.Log("Use Item");
@@ -23,7 +28,7 @@ public class FuncItem : MonoBehaviour, IDamagable
             // 아이템이 액션으로 들어감 ==> ? 해당 아이템이 발동하는 함수, 함수명을 다 똑같이하면 될듯?
             player = other.gameObject.GetComponent<PlayerStats>();
             Managers.Item.UseFuncItem.Add(ItemFunction);
-
+            animator.SetTrigger("Get");
             //Managers.Item.UseItem(0); 임시
             Invoke("DestroyItem", 1f);
 

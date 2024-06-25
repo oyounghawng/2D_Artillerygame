@@ -16,13 +16,27 @@
         },
         {
             "idx": 2,
+            "name": "체력 증가",
+            "desc": "체력 증가",
+            "value": 3,
+            "prefabPath": "Items/HealthUp"
+        },
+        {
+            "idx": 3,
+            "name": "지 뢰",
+            "desc": " 밟으면 체력을 잃습니다 ",
+            "value": 2,
+            "prefabPath": "Items/TrapMine"
+        },
+        {
+            "idx": 4,
             "name": "인공위성 레이저",
             "desc": "위에서 아래로 인공위성 레이저를 쏜다.",
             "value": -5,
             "prefabPath": "Items/Satellite_Laser"
         },
         {
-            "idx": 3,
+            "idx": 5,
             "name": "대포알 2개",
             "desc": "대포알 2개를 쏩니다.",
             "value": 1,

@@ -19,5 +19,6 @@ public class ItemManager
     public void UseItem(int idx)
     {
         UseFuncItem[idx]?.Invoke();
+        UseFuncItem[idx] = null;
     }
 }
