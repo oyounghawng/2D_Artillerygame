@@ -11,9 +11,12 @@ public class Item_TrapMine : StautsItem
     {
         base.UseItem(other);
         PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
+        PlayerStatsUI playerStatsUI = other.gameObject.GetComponent<PlayerStatsUI>();
         ParticleSystem particleSystem = this.GetComponent<ParticleSystem>();
+
         particleSystem.Play();
         player.TransHealth(-Managers.Data.items[3].value);
+        playerStatsUI.PrintTransStats(Managers.Data.items[3].desc);
     }
 
 }

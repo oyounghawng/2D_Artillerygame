@@ -10,6 +10,8 @@ public class Item_MoveEnforce : StautsItem
     {
         base.UseItem(other);
         PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
+        PlayerStatsUI playerStatsUI = other.gameObject.GetComponent<PlayerStatsUI>();
         player.TransSpeed(Managers.Data.items[1].value);
+        playerStatsUI.PrintTransStats("Managers.Data.items[1].desc");
     }
 }

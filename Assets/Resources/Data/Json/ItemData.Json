@@ -3,7 +3,7 @@
         {
             "idx": 0,
             "name": "탄 강화",
-            "desc": "폭발 범위 증가 및 데미지 증가",
+            "desc": "데미지 증가",
             "value": 2,
             "prefabPath": "Items/BulletEnforce"
         },
