@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
+using Photon.Pun;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviourPunCallbacks
 {
     private Rigidbody2D rigidBody;
     private float bulletSpeed;
@@ -16,6 +14,17 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
+        if (instantiateTransform == null)
+        {
+            Debug.LogError("instantiateTransform is not assigned in Bullet.");
+            return;
+        }
+
         bulletSpeed *= 1.5f;
         float angle = instantiateTransform.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
