@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class InputController : Controller
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (!player.myturn)
+        if (!player.myturn || !photonView.IsMine)
             return;
 
         if (context.phase == InputActionPhase.Performed)

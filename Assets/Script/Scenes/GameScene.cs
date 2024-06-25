@@ -15,6 +15,8 @@ public class GameScene : BaseScene
     {
         while (Managers.Data.Loaded() == false)
             yield return null;
+
+        Managers.UI.ShowSceneUI<UI_GameScene>();
     }
     public override void Clear()
     {

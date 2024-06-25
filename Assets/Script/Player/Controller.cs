@@ -1,10 +1,8 @@
 using Photon.Pun;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+public class Controller : MonoBehaviourPunCallbacks
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnAimEvent;
@@ -28,7 +26,7 @@ public class Controller : MonoBehaviour
     }
 
     public void CallFireEvent()
-    { 
+    {
         OnFireEvent?.Invoke();
     }
 }

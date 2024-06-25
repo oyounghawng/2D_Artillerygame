@@ -5,28 +5,28 @@
             "name": "탄 강화",
             "desc": "폭발 범위 증가 및 데미지 증가",
             "value": 2,
-            "prefabPath": "Items/BulletEnforce"
+            "prefabPath": "Prefabs/Items/BulletEnforce"
         },
         {
             "idx": 1,
             "name": "이동속도 강화",
             "desc": "이동속도 증가",
             "value": 1,
-            "prefabPath": "Items/MoveEnforce"
+            "prefabPath": "Prefabs/Items/MoveEnforce"
         },
         {
             "idx": 2,
             "name": "인공위성 레이저",
             "desc": "위에서 아래로 인공위성 레이저를 쏜다.",
             "value": -5,
-            "prefabPath": "Items/Satellite_Laser"
+            "prefabPath": "Prefabs/Items/Satellite_Laser"
         },
         {
             "idx": 3,
             "name": "대포알 2개",
             "desc": "대포알 2개를 쏩니다.",
             "value": 1,
-            "prefabPath": "Items/TwoBulletShoot"
+            "prefabPath": "Prefabs/Items/TwoBulletShoot"
         }
     ]
 }

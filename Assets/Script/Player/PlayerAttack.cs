@@ -11,30 +11,24 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
 
     private Vector2 movementDirection;
     private GameObject gunbarrel; //포신 //Shooting Arrow
-    private GameObject bullet; //포탄
+
     private float angle; //각도
     private float gunbarrelSpeed = 50;//포신의 속도
     private float force;
     private float maxForce = 10f;
+
     private bool isPressed = false;
 
     private void Awake()
     {
         controller = GetComponentInParent<Controller>();
-        gunbarrel = Util.FindChild(this.gameObject, "Shooting", true);
     }
     void Start()
     {
-        bullet = Managers.Resource.Load<GameObject>("Prefabs/Bullet");
-
+        gunbarrel = Util.FindChild(this.gameObject, "Shooting", true);
         controller.OnAimEvent += Aim;
         controller.OnGazeEvent += Gaze;
         controller.OnFireEvent += Fire;
-    }
-
-    private void Controller_OnGazeEvent()
-    {
-        throw new System.NotImplementedException();
     }
     private void Update()
     {
@@ -66,22 +60,23 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
 
     private void Fire()
     {
+        if (!photonView.IsMine)
+            return;
+
         photonView.RPC("RPC_Fire", RpcTarget.All);
+        TurnManager.instance.ChangeTurn();
     }
 
     [PunRPC]
     private void RPC_Fire()
     {
+        if (!photonView.IsMine)
+            return;
+
         isPressed = false;
-        GameObject go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "bullet"), gunbarrel.transform.position, gunbarrel.transform.rotation);
-        go.GetComponent<Bullet>().Set(gunbarrel.transform, force);
+        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "bullet"), gunbarrel.transform.position, gunbarrel.transform.rotation)
+        .GetComponent<Bullet>().photonView.RPC("RPC_Start", RpcTarget.All , gunbarrel.transform.eulerAngles.z, force);
         ResetGauge();
-        StartCoroutine(ChangeTurnAfterShot());
-    }
-    private IEnumerator ChangeTurnAfterShot()
-    {
-        yield return null;
-        TurnManager.instance.ChangeTurn();
     }
 
     public void Slider()

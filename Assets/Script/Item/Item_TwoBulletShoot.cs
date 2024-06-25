@@ -4,6 +4,7 @@ using UnityEngine;
 public class Item_TwoBulletShoot : FuncItem
 {
     int shootCount = 0;
+
     private void Start()
     {
         itemIdx = 3;

@@ -7,11 +7,6 @@ public class Fuel : MonoBehaviour
     public float fuel;
     public readonly float maxFuel = 1000;
     public float fuelRechargeRate = 1f;
-    void Start()
-    {
-        ResetFuel();
-    }
-
     public void ResetFuel()
     {
         fuel = maxFuel;

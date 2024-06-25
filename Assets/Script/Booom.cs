@@ -13,9 +13,11 @@ public class Booom : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.transform.CompareTag("Ground") ||
-            collision.transform.CompareTag("Player")) return;
-
-        explosionAreaGO.SetActive(true);
+        if (collision.transform.CompareTag(Tags.Player) || collision.transform.CompareTag(Tags.Ground))
+        {
+            explosionAreaGO.SetActive(true);
+            Destroy(gameObject, 0.02f);
+            return;
+        }
     }
 }

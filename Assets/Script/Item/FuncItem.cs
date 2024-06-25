@@ -9,7 +9,7 @@ public class FuncItem : MonoBehaviour, IDamagable
 {
 
     protected int itemIdx;
-    protected PlayerStats player = new PlayerStats();
+    protected PlayerStats player;
 
     public virtual void TakeDamage(int damageAmount)
     {

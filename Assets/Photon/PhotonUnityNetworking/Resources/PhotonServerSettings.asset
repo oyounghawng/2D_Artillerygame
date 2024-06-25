@@ -42,6 +42,8 @@ MonoBehaviour:
   - ChangeTurn
   - RPC_ChangeTurn
   - RPC_Fire
+  - RPC_Start
+  - RPC_GameOver
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

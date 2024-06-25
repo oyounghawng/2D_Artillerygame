@@ -52,7 +52,6 @@ namespace Photon.Pun.Demo.Asteroids
             
             PlayerNameInput.text = "Player " + Random.Range(1000, 10000);
         }
-
         #endregion
 
         #region PUN CALLBACKS
@@ -144,7 +143,6 @@ namespace Photon.Pun.Demo.Asteroids
         public override void OnLeftRoom()
         {
             SetActivePanel(SelectionPanel.name);
-
             foreach (GameObject entry in playerListEntries.Values)
             {
                 Destroy(entry.gameObject);
@@ -171,7 +169,7 @@ namespace Photon.Pun.Demo.Asteroids
             GameObject entry;
             if(playerListEntries.TryGetValue(otherPlayer.ActorNumber,out entry))
             {
-                Destroy(playerListEntries[otherPlayer.ActorNumber].gameObject);
+                Destroy(entry.gameObject);
                 playerListEntries.Remove(otherPlayer.ActorNumber);
             }
             StartGameButton.gameObject.SetActive(CheckPlayersReady());

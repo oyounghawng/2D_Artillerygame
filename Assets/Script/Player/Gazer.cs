@@ -8,6 +8,11 @@ public class Gazer : MonoBehaviour
     public float Force;
     public Slider forceUI;
 
+    private void Start()
+    {
+        forceUI = (Managers.UI.SceneUI as UI_GameScene).gazer.GetComponent<Slider>();
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.Space))
