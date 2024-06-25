@@ -40,7 +40,6 @@ public class Bullet : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(5);
         if (-30 > gameObject.transform.position.y)
         {
-            Debug.Log(name);
             Destroy(gameObject);
         }
     }

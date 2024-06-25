@@ -33,4 +33,5 @@ public class Tags
 {
     public const string Player = "Player";
     public const string Ground = "Ground";
+    public const string EndLine = "EndLine";
 }

@@ -118,11 +118,9 @@ public class TurnManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("한 명의 플레이어만 생존했습니다.");
             PhotonNetwork.LeaveRoom();
-            OnLeftRoom();
         }
 
     }
-
     public override void OnLeftRoom()
     {
         Managers.Scene.LoadScene(Define.SceneType.LobbyScene);
@@ -143,7 +141,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
     {
         float spawnXPos = Random.Range(-8f, 8f);
 
-        int itemIdx = Random.Range(0, 4);
+        int itemIdx = Random.Range(0, 3);
 
         Vector2 spawnPosition = new Vector2(spawnXPos, 5);
 

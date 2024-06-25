@@ -32,6 +32,11 @@ public class PlayerStats : MonoBehaviour
     private bool isDamage = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag(Tags.EndLine))
+        {
+            TurnManager.instance.GameOver();
+            return;
+        }
         if (!collision.GetComponent<CircleCollider2D>()) return;
 
         if (!isDamage)
@@ -72,4 +77,5 @@ public class PlayerStats : MonoBehaviour
     {
         damage += _damage;
     }
+
 }
