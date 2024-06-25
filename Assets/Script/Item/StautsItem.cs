@@ -6,7 +6,7 @@ public interface IUseitem
     public void UseItem(Collision2D other);
 }
 
-public class StautsItem : MonoBehaviour , IUseitem
+public class StautsItem : MonoBehaviour, IUseitem
 {
     protected Animator animator;
     void Start()
