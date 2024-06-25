@@ -1,44 +1,95 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerAttack : MonoBehaviour
 {
+    private Controller controller;
+    public Slider forceUI;
 
-    public float Angle;//각도
-    public float gunbarrelSpeed;//포신의 속도
-    public GameObject gunbarrel; //포신 //Shooting Arrow
-    public GameObject bullet; //포탄
+    private Vector2 movementDirection;
+    private GameObject gunbarrel; //포신 //Shooting Arrow
+    private GameObject bullet; //포탄
+    private float angle; //각도
+    private float gunbarrelSpeed = 50;//포신의 속도
+    private float force;
+    private float maxForce = 10f;
+    private bool isPressed = false;
 
-    public static GameObject  Gunangle;
-
+    private void Awake()
+    {
+        controller = GetComponentInParent<Controller>();
+        gunbarrel = Util.FindChild(this.gameObject, "Shooting", true);
+    }
     void Start()
     {
-        Gunangle = gunbarrel;
+        bullet = Managers.Resource.Load<GameObject>("Prefabs/Bullet");
+
+        controller.OnAimEvent += Aim;
+        controller.OnGazeEvent += Gaze;
+        controller.OnFireEvent += Fire;
     }
 
-
-    void Update()
+    private void Controller_OnGazeEvent()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        throw new System.NotImplementedException();
+    }
+    private void Update()
+    {
+        if (isPressed)
         {
-            Angle = Angle + Time.deltaTime * gunbarrelSpeed;
-            float rad = Angle * Mathf.Deg2Rad;
-            gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-            gunbarrel.transform.eulerAngles = new Vector3(0,0, Angle); 
+            force += Time.deltaTime * 2.5f;
+            force = Mathf.Clamp(force, 0, maxForce);
+            Slider();
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-                Angle = Angle - Time.deltaTime * gunbarrelSpeed;
-            float rad = Angle * Mathf.Deg2Rad;
-            gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-            gunbarrel.transform.eulerAngles = new Vector3(0,0, Angle);
-        }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameObject go= Instantiate(bullet);
-            go.transform.localPosition = gunbarrel.transform.position;
-        }
+    private void FixedUpdate()
+    {
+        angle = angle + Time.deltaTime * gunbarrelSpeed * movementDirection.y;
+        angle = Mathf.Clamp(angle, 0, 180);
+        float rad = angle * Mathf.Deg2Rad;
+        gunbarrel.transform.localPosition = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+        gunbarrel.transform.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    private void Aim(Vector2 value)
+    {
+        movementDirection = value;
+    }
+    private void Gaze()
+    {
+        isPressed = true;
+    }
+
+    private void Fire()
+    {
+        isPressed = false;
+        GameObject go = Instantiate(bullet);
+        go.GetComponent<Bullet>().Set(gunbarrel.transform, force);
+        go.transform.localPosition = gunbarrel.transform.position;
+        go.transform.rotation = gunbarrel.transform.rotation;
+        ResetGauge();
+        StartCoroutine(ChangeTurnAfterShot());
+    }
+
+    private IEnumerator ChangeTurnAfterShot()
+    {
+        yield return null;
+        TurnManager.instance.ChangeTurn();
+    }
+
+    public void Slider()
+    {
+        forceUI.value = force / maxForce;
+    }
+    public void ResetGauge()
+    {
+        force = 0;
+        forceUI.value = 0;
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ResetGauge();
     }
 }

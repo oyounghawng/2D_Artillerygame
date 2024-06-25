@@ -17,6 +17,5 @@ public class Booom : MonoBehaviour
             collision.transform.CompareTag("Player")) return;
 
         explosionAreaGO.SetActive(true);
-        //Destroy(this.gameObject, 0.02f);
     }
 }

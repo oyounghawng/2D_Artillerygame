@@ -1,41 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Controller controller;
+    private Rigidbody2D rigidBody2D;
+    private Fuel fuel;
 
-    private float horizontal;
+    private Vector2 movementDirection = Vector2.zero;
     private float speed = 3f;
+
+    private void Awake()
+    {
+        controller = GetComponentInParent<Controller>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        fuel = GetComponent<Fuel>();
+    }
+
+    private void Start()
+    {
+        controller.OnMoveEvent += Move;
+    }
 
     void Update()
     {
-
         if (!Input.anyKey)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | 
+            rigidBody2D.constraints = RigidbodyConstraints2D.FreezePositionX |
                 RigidbodyConstraints2D.FreezeRotation;
         }
         else
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
-
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!fuel.IsEmpty())
+        {
+            rigidBody2D.velocity = new Vector2(movementDirection.x * speed, rigidBody2D.velocity.y);
+            if (movementDirection.x != 0)
+            {
+                fuel.Decreasefuel(Mathf.Abs(movementDirection.x) * 20f);
+            }
+        }
     }
 
-    public void Move(InputAction.CallbackContext context)
+    private void Move(Vector2 direction)
     {
-        horizontal = context.ReadValue<Vector2>().x;
+        movementDirection = direction;
     }
-
 }
 
