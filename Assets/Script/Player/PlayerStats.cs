@@ -15,12 +15,6 @@ public class PlayerStats : MonoBehaviour
         speed = Managers.Data.status[0].Speed;
         damage = Managers.Data.status[0].Damage;
         fuel = Managers.Data.status[0].Fuel;
-        Debug.Log($"{health}, {speed}, {damage}, {fuel}");
-        InvokeRepeating("debuglog", 0f, 10f);
-    }
-    public void debuglog()
-    {
-        Debug.Log($"{health}, {speed}, {damage}, {fuel}");
     }
     public void TransHealth(int _health)
     {

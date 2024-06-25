@@ -13,11 +13,6 @@ public class InputController : Controller
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         if (!player.myturn)
             return;
 
@@ -26,11 +21,6 @@ public class InputController : Controller
     }
     public void OnAim(InputAction.CallbackContext context)
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         if (!player.myturn)
             return;
 
@@ -40,11 +30,6 @@ public class InputController : Controller
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         if (!player.myturn)
             return;
 
