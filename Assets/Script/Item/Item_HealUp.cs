@@ -1,7 +1,6 @@
-using System.Numerics;
 using UnityEngine;
 
-public class Item_BulletEnforce : StautsItem
+public class Item_HealUp : StautsItem
 {
     public override void OnCollisionEnter2D(Collision2D other)
     {
@@ -12,7 +11,7 @@ public class Item_BulletEnforce : StautsItem
         base.UseItem(other);
         PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
         PlayerStatsUI playerStatsUI = other.gameObject.GetComponent<PlayerStatsUI>();
-        player.TransDamage(Managers.Data.items[0].value);
-        playerStatsUI.PrintTransStats(Managers.Data.items[0].desc);
+        player.TransHealth(Managers.Data.items[2].value);
+        playerStatsUI.PrintTransStats(Managers.Data.items[2].desc);
     }
 }

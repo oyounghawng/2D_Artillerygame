@@ -25,6 +25,7 @@ public class Item_Satellite_Laser : FuncItem//, IDamagable
     {
         //ani on
         player.TransHealth(Managers.Data.items[itemIdx].value);
+        animator.SetTrigger("번개 좌좌좡");
         Debug.Log(Managers.Data.items[itemIdx].value);
     }
 
