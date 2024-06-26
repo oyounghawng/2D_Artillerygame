@@ -1,7 +1,6 @@
 using Photon.Pun;
 using System.IO;
 using TMPro;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;

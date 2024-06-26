@@ -281,11 +281,12 @@ namespace Photon.Pun.Demo.Asteroids
 
         private bool CheckPlayersReady()
         {
+            
             if (PhotonNetwork.CurrentRoom.Players.Count != 2)
             {
                 return false;
             }
-
+            
             if (!PhotonNetwork.IsMasterClient)
             {
                 return false;
