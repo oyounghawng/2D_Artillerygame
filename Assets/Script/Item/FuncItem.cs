@@ -9,8 +9,6 @@ public class FuncItem : MonoBehaviour
 {
     protected int itemIdx;
     protected PlayerStats player;
-    protected PlayerStats player = new PlayerStats();
-
     protected Animator animator;
     void Start()
     {

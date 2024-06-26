@@ -3,7 +3,7 @@
         {
             "idx": 0,
             "name": "탄 강화",
-            "desc": "데미지 증가",
+            "desc": "데미지와 폭발범위 증가",
             "value": 2,
             "prefabPath": "Prefabs/Items/BulletEnforce"
         },
@@ -19,14 +19,14 @@
             "name": "체력 증가",
             "desc": "체력 증가",
             "value": 3,
-            "prefabPath": "Items/HealthUp"
+            "prefabPath": "Prefabs/Items/HealthUp"
         },
         {
             "idx": 3,
             "name": "지 뢰",
             "desc": " 밟으면 체력을 잃습니다 ",
             "value": 2,
-            "prefabPath": "Items/TrapMine"
+            "prefabPath": "Prefabs/Items/TrapMine"
         },
         {
             "idx": 4,

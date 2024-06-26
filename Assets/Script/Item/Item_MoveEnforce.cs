@@ -12,6 +12,6 @@ public class Item_MoveEnforce : StautsItem
         PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
         PlayerStatsUI playerStatsUI = other.gameObject.GetComponent<PlayerStatsUI>();
         player.TransSpeed(Managers.Data.items[1].value);
-        playerStatsUI.PrintTransStats("Managers.Data.items[1].desc");
+        playerStatsUI.PrintTransStats(Managers.Data.items[1].desc);
     }
 }

@@ -6,7 +6,6 @@ public class Fuel : MonoBehaviour
     public Slider slider;
     public float fuel;
     public readonly float maxFuel = 1000;
-    public float fuelRechargeRate = 1f;
     public void ResetFuel()
     {
         fuel = maxFuel;

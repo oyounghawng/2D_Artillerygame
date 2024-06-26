@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Fuel fuel;
 
     private Vector2 movementDirection = Vector2.zero;
-    private float speed = 3f;
+    private float speed;
 
     private void Awake()
     {
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        speed = GetComponent<PlayerStats>().speed;
         controller.OnMoveEvent += Move;
     }
 

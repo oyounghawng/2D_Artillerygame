@@ -8,23 +8,26 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int health { get; set; }
-    private int speed { get; set; }
-    private int damage { get; set; }
-    private int fuel { get; set; }
+    public int health { get; set; }
+    public int speed { get; set; }
+    public int damage { get; set; }
+    public int fuel { get; set; }
+    public int maxHealth { get; set; }
 
-    private int maxHealth { get; set; }
 
     private Slider HP;
 
-    private void Start()
+    private void Awake()
     {
         health = Managers.Data.status[0].Health;
         maxHealth = health;
         speed = Managers.Data.status[0].Speed;
         damage = Managers.Data.status[0].Damage;
         fuel = Managers.Data.status[0].Fuel;
+    }
 
+    private void Start()
+    {
         HP = Util.FindChild<Slider>(this.gameObject, "HP", true);
         HP.value = 1;
     }
@@ -41,14 +44,16 @@ public class PlayerStats : MonoBehaviour
 
         if (!isDamage)
         {
-            StartCoroutine(Damage());
+            int damage = collision.GetComponentInParent<Bullet>().damage;
+            Debug.Log(damage);
+            StartCoroutine(OnDamage(damage));
         }
     }
 
-    IEnumerator Damage()
+    IEnumerator OnDamage(int damage)
     {
         isDamage = true;
-        TransHealth(-3);
+        TransHealth(-damage);
         yield return new WaitForSeconds(0.5f);
         isDamage = false;
     }
@@ -65,7 +70,6 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             TurnManager.instance.GameOver();
-            //PhotonNetwork.Destroy(this.gameObject);
         }
     }
 

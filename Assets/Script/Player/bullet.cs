@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviourPunCallbacks
     private Rigidbody2D rigidBody;
     private float bulletSpeed;
     private TurnManager turnManager;
+    public int damage;
 
     private void Awake()
     {
@@ -15,10 +16,11 @@ public class Bullet : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPC_Start(float _angle, float _bulletSpeed)
+    private void RPC_Start(float _angle, float _bulletSpeed, int _damage)
     {
         bulletSpeed = _bulletSpeed;
         bulletSpeed *= 1.5f;
+        damage = _damage;
 
         float angle = _angle * Mathf.Deg2Rad;
         Vector2 power = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;

@@ -73,9 +73,10 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
             return;
 
+        int damage = GetComponent<PlayerStats>().damage;
         isPressed = false;
         PhotonNetwork.Instantiate(Path.Combine("Prefabs", "bullet"), gunbarrel.transform.position, gunbarrel.transform.rotation)
-        .GetComponent<Bullet>().photonView.RPC("RPC_Start", RpcTarget.All , gunbarrel.transform.eulerAngles.z, force);
+        .GetComponent<Bullet>().photonView.RPC("RPC_Start", RpcTarget.All , gunbarrel.transform.eulerAngles.z, force, damage);
         ResetGauge();
     }
 

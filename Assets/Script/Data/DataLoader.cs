@@ -1,31 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 [Serializable]
-public class LevelExpData
+public class ItemData
 {
-    public int Game_Lv;
-    public int Game_Lv_Exp;
+    public int idx;
+    public string name;
+    public string desc;
+    public int value;
+    public string prefabPath;
+
 }
-
-[Serializable]
-public class LevelExpDataLoader : ILoader<int, LevelExpData>
-{
-    public List<LevelExpData> levelExps = new List<LevelExpData>();
-
-    public Dictionary<int, LevelExpData> MakeDict()
-    {
-        Dictionary<int, LevelExpData> dic = new Dictionary<int, LevelExpData>();
-
-        foreach (LevelExpData levelExp in levelExps)
-            dic.Add(levelExp.Game_Lv, levelExp);
-
-        return dic;
-    }
-}
-
-
 
 [Serializable]
 public class ItemDataLoader : ILoader<int, ItemData>
@@ -41,6 +26,17 @@ public class ItemDataLoader : ILoader<int, ItemData>
 
         return dic;
     }
+}
+
+[Serializable]
+public class PlayerData
+{
+    public int Idx;
+    public int Health;
+    public int Speed;
+    public int Damage;
+    public int Fuel;
+    public int FireSize;
 }
 
 [Serializable]

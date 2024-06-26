@@ -97,7 +97,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             string roomName = "Room " + Random.Range(1000, 10000);
 
-            RoomOptions options = new RoomOptions {MaxPlayers = 8};
+            RoomOptions options = new RoomOptions {MaxPlayers = 2};
 
             PhotonNetwork.CreateRoom(roomName, options, null);
         }
@@ -130,6 +130,7 @@ namespace Photon.Pun.Demo.Asteroids
 
                 playerListEntries.Add(p.ActorNumber, entry);
             }
+
 
             StartGameButton.gameObject.SetActive(CheckPlayersReady());
 
@@ -280,11 +281,15 @@ namespace Photon.Pun.Demo.Asteroids
 
         private bool CheckPlayersReady()
         {
-            if (!PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.CurrentRoom.Players.Count != 2)
             {
                 return false;
             }
 
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                return false;
+            }
             foreach (Player p in PhotonNetwork.PlayerList)
             {
                 object isPlayerReady;

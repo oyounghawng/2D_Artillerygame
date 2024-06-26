@@ -4,7 +4,7 @@
             "Idx": 0,
             "Health": 10,
             "Speed": 3,
-            "Damage": 5,
+            "Damage": 1,
             "Fuel": 10,
             "FireSize": 5
         }

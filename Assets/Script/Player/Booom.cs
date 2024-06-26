@@ -9,6 +9,8 @@ public class Booom : MonoBehaviour
     private void Start()
     {
         explosionAreaGO.SetActive(false);
+        explosionAreaGO.GetComponent<CircleCollider2D>().radius
+            += (GetComponent<Bullet>().damage - 1) * 0.2f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -106,7 +106,6 @@ public class TurnManager : MonoBehaviourPunCallbacks
         int aliveCount = 0;
         foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
         {
-            Debug.Log(player.CustomProperties["isDie"]);
             if (player.CustomProperties.ContainsKey("isDie") && !(bool)player.CustomProperties["isDie"])
             {
                 aliveCount++;
@@ -114,7 +113,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
         }
         Debug.Log(aliveCount);
         // 생존한 플레이어가 한 명인지 체크
-        if (aliveCount == 0)
+        if (aliveCount <= 1)
         {
             Debug.Log("한 명의 플레이어만 생존했습니다.");
             PhotonNetwork.LeaveRoom();
@@ -141,7 +140,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
     {
         float spawnXPos = Random.Range(-8f, 8f);
 
-        int itemIdx = Random.Range(0, 2);
+        int itemIdx = Random.Range(0, 4);
 
         Vector2 spawnPosition = new Vector2(spawnXPos, 5);
 
