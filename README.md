@@ -44,49 +44,6 @@ Unity 2D기반으로 이루어진 하이퍼 FPS 포트리스 게임
 
 </div>
 
-   </br>
-   </br>
-   </br>
-   </br>
-
-### 🤔 주요 기능 단편코드
-
-
-<details>
-　　<summary> ㅁㅁㅁ </summary>
-<div markdown="1">       
-
-```csharp
-
-ㅁㅁㅁㅁ
-
-```
-</div>
-</details>
-
-<details>
-　　<summary> ㅁㅁㅁ </summary>
-<div markdown="1">       
-
-```csharp
-
-ㅁㅁㅁ
-
-```
-</div>
-</details>
-
-<details>
-　　<summary> ㅁㅁㅁ </summary>
-<div markdown="1">       
-
-```csharp
-
-ㅁㅁㅁㅁ
-
-```
-</div>
-</details>
 
 
 
@@ -97,10 +54,11 @@ Unity 2D기반으로 이루어진 하이퍼 FPS 포트리스 게임
 </br>
 </br>
 
-
+<div align = 'center'>
   
 ### 📸 게임 화면
 
+</div>
 </br>
 </br>
 </br>
