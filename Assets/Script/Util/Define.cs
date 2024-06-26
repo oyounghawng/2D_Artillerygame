@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Define : MonoBehaviour
+public class Define
 {
     public enum SceneType
     {
         Unknown,
-        LogoScene,
         LobbyScene,
         GameScene,
     }
@@ -28,4 +27,11 @@ public class Define : MonoBehaviour
         Drag,
         EndDrag
     }
+}
+
+public class Tags
+{
+    public const string Player = "Player";
+    public const string Ground = "Ground";
+    public const string EndLine = "EndLine";
 }

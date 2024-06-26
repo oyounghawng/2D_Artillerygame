@@ -1,0 +1,46 @@
+{
+    "items": [
+        {
+            "idx": 0,
+            "name": "탄 강화",
+            "desc": "데미지와 폭발범위 증가",
+            "value": 2,
+            "prefabPath": "Prefabs/Items/BulletEnforce"
+        },
+        {
+            "idx": 1,
+            "name": "이동속도 강화",
+            "desc": "이동속도 증가",
+            "value": 1,
+            "prefabPath": "Prefabs/Items/MoveEnforce"
+        },
+        {
+            "idx": 2,
+            "name": "체력 증가",
+            "desc": "체력 증가",
+            "value": 3,
+            "prefabPath": "Prefabs/Items/HealthUp"
+        },
+        {
+            "idx": 3,
+            "name": "지 뢰",
+            "desc": " 밟으면 체력을 잃습니다 ",
+            "value": 2,
+            "prefabPath": "Prefabs/Items/TrapMine"
+        },
+        {
+            "idx": 4,
+            "name": "인공위성 레이저",
+            "desc": "위에서 아래로 인공위성 레이저를 쏜다.",
+            "value": -5,
+            "prefabPath": "Prefabs/Items/Satellite_Laser"
+        },
+        {
+            "idx": 5,
+            "name": "대포알 2개",
+            "desc": "대포알 2개를 쏩니다.",
+            "value": 1,
+            "prefabPath": "Prefabs/Items/TwoBulletShoot"
+        }
+    ]
+}
