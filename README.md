@@ -116,7 +116,7 @@ Unity 2D기반으로 이루어진 하이퍼 FPS 포트리스 게임
 
 |로비 화면| 
 |:------:|
-!![image](https://github.com/oyounghawng/2D_Artillerygame/assets/79829083/32a71386-0d20-447b-9c8f-6024d6b60bfb)|
+|![image](https://github.com/oyounghawng/2D_Artillerygame/assets/79829083/32a71386-0d20-447b-9c8f-6024d6b60bfb)|
 
 </br>
 
