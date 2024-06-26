@@ -19,7 +19,6 @@ public class TurnManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI turnText;
     public Image windDirectionUI;
 
-
     int curturn = 1;
 
     public Hashtable initialDie = new Hashtable() { { "isDie", true } };
@@ -33,10 +32,11 @@ public class TurnManager : MonoBehaviourPunCallbacks
         SpawnPlayer();
         WindDirectionChange();
         WindPowerChange();
-
+        turnText.text = "이번턴은 : Player " + curturn;
         if (curturn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             player.ChangeAction();
+            
         }
     }
     private void SpawnPlayer()
@@ -45,11 +45,11 @@ public class TurnManager : MonoBehaviourPunCallbacks
         GameObject go;
         if (idx == 1)
         {
-            go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-3, 2, 0), Quaternion.identity);
+            go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-8, 2, 0), Quaternion.identity);
         }
         else
         {
-            go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(3, 2, 0), Quaternion.identity);
+            go = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(8, 2, 0), Quaternion.identity);
         }
         PhotonNetwork.LocalPlayer.SetCustomProperties(initialDie);
         Photon.Realtime.Player[] playerList = PhotonNetwork.PlayerList;
@@ -141,7 +141,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
     {
         float spawnXPos = Random.Range(-8f, 8f);
 
-        int itemIdx = Random.Range(0, 3);
+        int itemIdx = Random.Range(0, 2);
 
         Vector2 spawnPosition = new Vector2(spawnXPos, 5);
 

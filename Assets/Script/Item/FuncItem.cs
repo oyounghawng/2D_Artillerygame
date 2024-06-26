@@ -5,16 +5,10 @@ public interface IUseFuncItems
 {
     public void UseItem(int ItemFunctionIdx);
 }
-public class FuncItem : MonoBehaviour, IDamagable
+public class FuncItem : MonoBehaviour
 {
-
     protected int itemIdx;
     protected PlayerStats player;
-
-    public virtual void TakeDamage(int damageAmount)
-    {
-        Debug.Log("Use Item");
-    }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
